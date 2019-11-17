@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>AutoStyle</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="whyamidoingcss.css">
+
+</head>
+<body>
+
+  <script>
+    function pleaseWork(mode) {
+      var data = {
+          "mode": mode,
+          "types": "jeans" //have this done via ml but not successfully linked
+        }
+        fetch('http://127.0.0.1:5000/', {
+          method: 'POST',
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then((resp) => {
+          return resp.json()
+        }).then((json) => {
+          console.log("hek");
+        }).catch((error) => {
+          console.log(error);
+        });
+
+    }
+    
+    $(document).ready(function(){
+      $(".typeSelect").hide();
+      $(".colourSelect").hide();
+      $(".styleTypeScreen").hide();
+      $(".resultsScreen").hide();
+      $(".styleTypePic").hide();
+
+      $(".uploadBtn").click(function(){
+        $(".homeScreen").hide();
+        $(".styleTypePic").fadeIn();
+      });
+
+      $(".styleTypeBtn").click(function(){
+        alert(pleaseWork(this.id))
+        $(".styleTypePic").hide();
+        $(".resultsScreen").fadeIn();
+      })
+
+      $(".describeBtn").click(function(){
+          $(".homeScreen").hide();
+          $(".typeSelect").fadeIn();
+      });
+
+      $(".typeLogo").click(function(){
+        $(".mainCont").data("type", this.id);
+        $(".typeSelect").hide();
+        $(".colourSelect").fadeIn();
+      });
+
+      $(".dot").click(function(){
+        $(".mainCont").data("colour", this.id);
+        $(".colourSelect").hide();
+        $(".styleTypeScreen").fadeIn();
+      });
+
+      $(".styleTypeBtn").click(function(){
+        $(".mainCont").data("styleType", this.id);
+        $(".styleTypeScreen").hide();
+        $(".resultsScreen").fadeIn();
+      });
+
+      $(".navbar-brand").click(function(){
+        $(".typeSelect").hide();
+        $(".colourSelect").hide();
+        $(".styleTypeScreen").hide();
+        $(".resultsScreen").hide();
+        $(".homeScreen").fadeIn();
+      });
+    });
+
+    //$(".typeSelect").hide();
+  </script>
+
+  
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+   <a class="navbar-brand" href="#">
+    <img src="images\logo.png" alt="Logo" style="width:100px;">
+  </a>
+<ul class="navbar-nav mr-auto">
+      
+     
+    </ul>
+      
+        <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Register</a>
+      </li>
+    </ul>
+      
+  		
+  	</li>
+  </ul>
+ 
+</nav>
+
+<div class="container-fluid">
+	<div class="mainCont container">
+		<div class="homeScreen col text-center">
+			<div class="button">
+				<button type="button" class="describeBtn btn btn-lg btn-light">Describe the item</button>
+			</div>
+			<div class="button">
+				<button type="button" class="uploadBtn btn btn-lg btn-light">Upload photo</button>
+			</div>
+		</div>
+
+    <div class="typeSelect col text-center">
+      <div class="row">
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <a><img src="images/turtleneck.png" id="turtleneck" alt="turtleneck" class="typeLogo"></a>
+          </div>
+        </div>
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <img src="images/crop.png" id="crop" alt="crop" class="typeLogo">
+          </div>
+        </div>
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <img src="images/shirt.png" id="shirt" alt="shirt" class="typeLogo">
+          </div>
+        </div>
+      </div>
+      <div class="row" style="height:30px";>
+      </div>
+      <div class="row">
+
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <img src="images/polo.png" id="polo" alt="polo" class="typeLogo">
+          </div>
+        </div>
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <img src="images/tshirt.png" id="tshirt" alt="tshirt" class="typeLogo">
+          </div>
+        </div>
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <img src="images/tank.png" id="tank" alt="tank" class="typeLogo">
+          </div>
+        </div>
+      </div>
+
+	</div>
+
+
+
+
+
+  <div class="colourSelect col text-center">
+    <div class="row">
+      <div class="col-sm">
+        <span class="dot" id="green" style="background-color:#85e085"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="blue" style="background-color:#8585e0"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="yellow" style="background-color:#ffff66"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="red" style="background-color:#e82c2c"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="orange" style="background-color:orange"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="yellow-green" style="background-color:#9acd32"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="yellow-orange" style="background-color:#ffae42"></span>
+      </div>
+    </div>
+
+    <div class="row" style="padding-top:30px;">
+      <div class="col-sm">
+        <span class="dot" id="blue-green" style="background-color:#0d98ba"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="red-orange" style="background-color:#ff5349"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="violet" style="background-color:#7f00e1"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="blue-violet" style="background-color:#8a2be2"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="red-violet" style="background-color:#c71585"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="white" style="background-color:#ffffff"></span>
+      </div>
+      <div class="col-sm">
+        <span class="dot" id="black" style="background-color:#000000"></span>
+      </div>
+    </div>
+
+
+  </div>
+
+    <div class="styleTypeScreen col text-center">
+      <div class="button">
+        <button type="button" id="plain" class="styleTypeBtn btn btn-lg btn-light">Plain</button>
+      </div>
+      <div class="button">
+        <button type="button" id="contrast" class="styleTypeBtn btn btn-lg btn-light">Contrast</button>
+      </div>
+    </div>
+
+
+    <div class="styleTypePic col text-center">
+      <div class="chosenImage">
+        <h3>Image Chosen:</h3>
+        <img src="../Trow.jpg">
+      </div>
+
+      <div class="button">
+        <button type="button" id="plain" class="styleTypeBtn btn btn-lg btn-light">Plain</button>
+      </div>
+      <div class="button">
+        <button type="button" id="contrast" class="styleTypeBtn btn btn-lg btn-light">Contrast</button>
+      </div>
+    </div>
+
+
+
+
+    <div class="resultsScreen col text-center">
+      <div class="row">
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <a href="https://getbootstrap.com/docs/4.0/components/buttons/"><img class="typeLogo" src="images/crop.png"></a>
+            <p>Fuck me I want to die</p>
+          </div>
+        </div>
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <a href="https://getbootstrap.com/docs/4.0/components/buttons/"><img class="typeLogo" src="images/crop.png"></a>
+            <p>Fuck me I want to die</p>
+          </div>
+        </div>
+        <div class="types col-sm-4">
+          <div class="innerType">
+            <a href="https://getbootstrap.com/docs/4.0/components/buttons/"><img class="typeLogo" src="images/crop.png"></a>
+            <p>Fuck me I want to die</p>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+</div>
+
+</body>
+</html>

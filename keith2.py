@@ -17,8 +17,8 @@ def endPoint():
         # header and caches preflight response for an 3600s
         headers = {
             'Access-Control-Allow-Origin': '*',
-            # 'Access-Control-Allow-Methods': 'POST',
-            # 'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Max-Age': '3600'
         }
 
@@ -32,7 +32,7 @@ def endPoint():
 '''
 
     request_json = request.get_json()
-    pic = request_json.get("pic")
+   # pic = request_json.get("pic")
     mode = request_json.get("mode")
     types = request_json.get("types")
 
@@ -187,12 +187,12 @@ def endPoint():
             counter +=1
             if counter == 9:
                 break
-        to_send = {
-            "link": link,
-            "disc": disc,
-            "outputImgs": outputImgs
-        }
-        return(jsonify(to_send), 200, {'Access-Control-Allow-Origin': '*'})
+    to_send = {
+        "link": link,
+        "disc": disc,
+        "outputImgs": outputImgs
+    }
+    return(jsonify(to_send), 200, {'Access-Control-Allow-Origin': '*'})
 
 if __name__=='__main__':
     app.run()

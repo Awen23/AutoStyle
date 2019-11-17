@@ -9,6 +9,7 @@ import bensCode
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
 
+
 @app.route('/', methods=['POST'])
 def endPoint():
     if request.method == 'OPTIONS':
