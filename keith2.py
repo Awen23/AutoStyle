@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import re
 from flask_cors import CORS
 import bensCode
+import cv2
 
 
 app = Flask(__name__)
@@ -35,6 +36,8 @@ def endPoint():
     mode = request_json.get("mode")
     types = request_json.get("types")
 
+
+    pic = cv2.imread("./Trow.jpg")
     percentages = bensCode.bensCode(pic);
 
 
@@ -130,6 +133,11 @@ def endPoint():
         startString += "trousers-leggings/leggings"+"/"
         startString +="N-82z"
         startString += "Z"+typesDic["leggings"]
+    if (type == "jeans"):
+        startString += "tops"+"/"
+        startString +="N-82z"
+        startString += "Z"+typesDic["tops"]
+        
         
     for z in mainColours:
          startString += "Z"+coloursDic[z]    
